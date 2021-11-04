@@ -1,10 +1,12 @@
 import java.sql.*;
 import java.util.*;
-public class ConnectionDemo {
+public class TotalCode {
   public static void main(String[] args) {
     try {
       Scanner sc = new Scanner(System.in);
+      //establshing connection
       Class.forName("org.sqlite.JDBC");
+      //creating db
       Connection con = DriverManager.getConnection("jdbc:sqlite:Movies.db");
       if(con != null) {
     	  //creating movie table in database
@@ -24,7 +26,8 @@ public class ConnectionDemo {
           pstmt.setInt(5,releaseyear);
           int n = pstmt.executeUpdate();
           System.out.println(n);
-          
+        
+        //querying data from movies table  
         PreparedStatement pstmt = con.prepareStatement("select * from movies");
         ResultSet rs = pstmt.executeQuery();
         System.out.println("Movie\t\t Actor\t\t Actress\t\t Director\t\t Releaseyear");
